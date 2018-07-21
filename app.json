@@ -1,9 +1,9 @@
 {
   "expo": {
     "name": "kaigyo-kun-expo",
-    "description": "This project is really great.",
+    "description": "Kaigyokun Expo ver.",
     "slug": "kaigyo-kun-expo",
-    "privacy": "public",
+    "privacy": "unlisted",
     "sdkVersion": "28.0.0",
     "platforms": ["ios", "android"],
     "version": "1.0.0",
