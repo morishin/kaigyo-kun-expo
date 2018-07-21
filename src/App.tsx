@@ -12,11 +12,14 @@ import {
   ToastAndroid,
   Platform
 } from "react-native";
+import { Analytics, ScreenHit, Event } from "expo-analytics";
 import TextInputBox from "./TextInputBox";
 
 interface State {
   currentText: string;
 }
+
+const analytics = new Analytics("UA-122703106-1");
 
 export default class App extends React.Component<{}, State> {
   constructor(props: {}) {
@@ -27,7 +30,11 @@ export default class App extends React.Component<{}, State> {
     };
   }
 
-  private onPressCopyButton() {
+  async componentDidMount() {
+    await analytics.hit(new ScreenHit("Top"));
+  }
+
+  private async onPressCopyButton() {
     if (this.state.currentText.length === 0) {
       if (Platform.OS === "android") {
         ToastAndroid.show("テキストを入力してください", ToastAndroid.SHORT);
@@ -50,6 +57,8 @@ export default class App extends React.Component<{}, State> {
       [{ text: "閉じる" }],
       { cancelable: true }
     );
+
+    await analytics.event(new Event("user_action", "copy"));
   }
 
   private onPressDeleteButton() {
@@ -57,15 +66,20 @@ export default class App extends React.Component<{}, State> {
       "確認",
       "テキストを削除しますか？",
       [
-        { text: "削除", onPress: () => this.clearText(), style: "destructive" },
+        {
+          text: "削除",
+          onPress: async () => await this.clearText(),
+          style: "destructive"
+        },
         { text: "キャンセル", style: "cancel" }
       ],
       { cancelable: true }
     );
   }
 
-  private clearText() {
+  private async clearText() {
     this.setState({ currentText: "" });
+    await analytics.event(new Event("user_action", "delete"));
   }
 
   private renderHeader() {
