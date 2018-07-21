@@ -13,3 +13,8 @@
     ```sh
     exp android
     ```
+## Generate apk
+
+```sh
+exp build:android
+```
