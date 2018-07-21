@@ -28,7 +28,8 @@
       "versionCode": 1,
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive_icon_foreground.png"
-      }
+      },
+      "permissions": []
     },
     "packagerOpts": {
       "sourceExts": [
