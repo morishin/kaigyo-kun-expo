@@ -1,5 +1,7 @@
 # 改行くん Expo ver.
 
+https://play.google.com/store/apps/details?id=me.morishin.kaigyokun.android
+
 ## Run
 
 1. Launch packager
