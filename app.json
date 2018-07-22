@@ -29,6 +29,7 @@
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive_icon_foreground.png"
       },
+      "playStoreUrl": "https://play.google.com/store/apps/details?id=me.morishin.kaigyokun.android",
       "permissions": []
     },
     "packagerOpts": {
