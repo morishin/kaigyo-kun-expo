@@ -5,16 +5,17 @@ interface Props {
   style?: TextStyle;
   onChangeText?: (text: string) => void;
   value: string;
+  showSmilyFace: boolean;
+  onFocus?: () => void;
+  onBlur?: () => void;
 }
 
 interface State {
   height: number;
-  showSmilyFace: boolean;
 }
 
 export default class TextInputBox extends React.Component<Props, State> {
   private defaultHeight: number;
-  private currentText: string;
 
   constructor(props: Props) {
     super(props);
@@ -28,11 +29,9 @@ export default class TextInputBox extends React.Component<Props, State> {
         return 20;
       }
     })();
-    this.currentText = "";
 
     this.state = {
-      height: this.defaultHeight,
-      showSmilyFace: true
+      height: this.defaultHeight
     };
   }
 
@@ -72,18 +71,10 @@ export default class TextInputBox extends React.Component<Props, State> {
         <TextInput
           value={this.props.value}
           onChangeText={text => {
-            this.currentText = text;
-            this.setState({ showSmilyFace: text.length === 0 });
             if (this.props.onChangeText) this.props.onChangeText(text);
           }}
-          onFocus={() => {
-            this.setState({ showSmilyFace: false });
-          }}
-          onBlur={() => {
-            this.setState({
-              showSmilyFace: this.currentText.length === 0
-            });
-          }}
+          onFocus={this.props.onFocus}
+          onBlur={this.props.onBlur}
           style={[
             this.props.style,
             {
@@ -99,7 +90,7 @@ export default class TextInputBox extends React.Component<Props, State> {
           autoCorrect={false}
           padding={4}
         />
-        {this.state.showSmilyFace ? this.renderSmilyFace() : null}
+        {this.props.showSmilyFace ? this.renderSmilyFace() : null}
       </View>
     );
   }

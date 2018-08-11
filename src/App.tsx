@@ -15,9 +15,11 @@ import {
 import { Analytics, ScreenHit, Event } from "expo-analytics";
 import TextInputBox from "./TextInputBox";
 import { env } from "./dotenv/env";
+import StateStorage from "./StateStorage";
 
 interface State {
   currentText: string;
+  showSmilyFace: boolean;
 }
 
 const analytics = env.GOOGLE_ANALYTICS_TRACKING_ID
@@ -29,12 +31,17 @@ export default class App extends React.Component<{}, State> {
     super(props);
 
     this.state = {
-      currentText: ""
+      currentText: "",
+      showSmilyFace: false
     };
   }
 
   async componentDidMount() {
     if (analytics) await analytics.hit(new ScreenHit("Top"));
+    const savedText = await StateStorage.getInputText();
+    if (savedText) {
+      this.setState({ currentText: savedText });
+    }
   }
 
   private async onPressCopyButton() {
@@ -130,8 +137,18 @@ export default class App extends React.Component<{}, State> {
         <TextInputBox
           style={{ width: width, height: width, backgroundColor: "#fff" }}
           value={this.state.currentText}
-          onChangeText={text => {
+          onChangeText={async text => {
             this.setState({ currentText: text });
+            await StateStorage.setInputText(text);
+          }}
+          showSmilyFace={this.state.showSmilyFace}
+          onFocus={() => {
+            this.setState({ showSmilyFace: false });
+          }}
+          onBlur={() => {
+            this.setState({
+              showSmilyFace: this.state.currentText.length === 0
+            });
           }}
         />
       </View>
