@@ -2,9 +2,16 @@
 
 https://play.google.com/store/apps/details?id=me.morishin.kaigyokun.android
 
+## Setup
+
+```sh
+yarn
+```
+
 ## Run
 
 1. Launch packager
+
     ```sh
     exp start
     ```
@@ -12,6 +19,7 @@ https://play.google.com/store/apps/details?id=me.morishin.kaigyokun.android
 1. Launch Android emulator by Genymotion
 
 1. Launch app with Expo app in emulator
+
     ```sh
     exp android
     ```
