@@ -28,7 +28,7 @@
     },
     "android": {
       "package": "me.morishin.kaigyokun.android",
-      "versionCode": 3,
+      "versionCode": 4,
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive_icon_foreground.png"
       },

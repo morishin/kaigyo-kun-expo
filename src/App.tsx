@@ -32,7 +32,7 @@ export default class App extends React.Component<{}, State> {
 
     this.state = {
       currentText: "",
-      showSmilyFace: false
+      showSmilyFace: true
     };
   }
 
@@ -40,7 +40,10 @@ export default class App extends React.Component<{}, State> {
     if (analytics) await analytics.hit(new ScreenHit("Top"));
     const savedText = await StateStorage.getInputText();
     if (savedText) {
-      this.setState({ currentText: savedText });
+      this.setState({
+        currentText: savedText,
+        showSmilyFace: savedText.length === 0
+      });
     }
   }
 
@@ -88,7 +91,8 @@ export default class App extends React.Component<{}, State> {
   }
 
   private async clearText() {
-    this.setState({ currentText: "" });
+    this.setState({ currentText: "", showSmilyFace: true });
+    await StateStorage.setInputText("");
     if (analytics) await analytics.event(new Event("user_action", "delete"));
   }
 
