@@ -23,8 +23,20 @@ yarn
     ```sh
     exp android
     ```
-## Generate apk
+
+## Publish (only for owner)
+### Bump version
+
+```sh
+yarn run bumpversion
+```
+
+### Generate apk
 
 ```sh
 exp build:android
 ```
+
+### Publish
+
+Publish the app on Google Play Console.
