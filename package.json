@@ -1,6 +1,9 @@
 {
   "main": "node_modules/expo/AppEntry.js",
   "private": true,
+  "scripts": {
+    "bumpversion": "node scripts/bump_version.js"
+  },
   "dependencies": {
     "expo": "^28.0.0",
     "expo-analytics": "https://github.com/davidyaha/expo-analytics",
@@ -11,6 +14,7 @@
   },
   "devDependencies": {
     "@types/expo": "^27.0.6",
+    "prompts": "^0.1.14",
     "react-native-typescript-transformer": "1.2.10",
     "typescript": "2.9.2"
   }
