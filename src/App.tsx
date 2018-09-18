@@ -10,7 +10,9 @@ import {
   Clipboard,
   Alert,
   ToastAndroid,
-  Platform
+  Platform,
+  Text,
+  Linking
 } from "react-native";
 import { Analytics, ScreenHit, Event } from "expo-analytics";
 import TextInputBox from "./TextInputBox";
@@ -87,6 +89,12 @@ export default class App extends React.Component<{}, State> {
         { text: "キャンセル", style: "cancel" }
       ],
       { cancelable: true }
+    );
+  }
+
+  private onPressPrivacyPolicyLink() {
+    Linking.openURL("http://kaigyo-kun.morishin.me/privacy_policy.html").catch(
+      err => console.error("URLを開けませんでした", err)
     );
   }
 
@@ -197,6 +205,25 @@ export default class App extends React.Component<{}, State> {
     );
   }
 
+  private renderPrivacyPolicyLink() {
+    return (
+      <View
+        style={{
+          width: "100%",
+          alignItems: "flex-end",
+          paddingHorizontal: 30,
+          marginTop: 10
+        }}
+      >
+        <TouchableOpacity onPress={this.onPressPrivacyPolicyLink.bind(this)}>
+          <Text style={{ color: "gray", fontSize: 10 }}>
+            プライバシーポリシー
+          </Text>
+        </TouchableOpacity>
+      </View>
+    );
+  }
+
   render() {
     return (
       <KeyboardAvoidingView behavior="padding" style={{ flex: 1 }}>
@@ -211,6 +238,7 @@ export default class App extends React.Component<{}, State> {
           {this.renderButton("delete", () => {
             this.onPressDeleteButton();
           })}
+          {this.renderPrivacyPolicyLink()}
         </ScrollView>
       </KeyboardAvoidingView>
     );
