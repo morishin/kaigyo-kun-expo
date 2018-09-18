@@ -9,7 +9,7 @@
       "ios",
       "android"
     ],
-    "version": "1.1.0",
+    "version": "1.2.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
     "splash": {
@@ -28,7 +28,7 @@
     },
     "android": {
       "package": "me.morishin.kaigyokun.android",
-      "versionCode": 4,
+      "versionCode": 5,
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive_icon_foreground.png"
       },
